@@ -1,8 +1,10 @@
 import sqlite3
-from datetime import datetime,date
+from datetime import date
+
+
 class Database:
     def __init__(self):
-        self.conn = sqlite3.connect('datastore/database.db')
+        self.conn = sqlite3.connect("datastore/database.db")
         self.cursor = self.conn.cursor()
 
     def create_table(self):
@@ -12,7 +14,7 @@ class Database:
         ); """
         self.cursor.execute(table)
 
-    def insert_into(self,ip):
+    def insert_into(self, ip):
         self.cursor.execute("INSERT INTO servers VALUES (?,?);", (ip, date.today()))
         self.conn.commit()
 
